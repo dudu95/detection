@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <script type="text/javascript" src="../script/jquery.js"></script>
+    <script type="text/javascript" src="../script/bootstrap.js"></script>
+    <script type="text/javascript" src="../script/vue.js"></script>
+    <script src="../report/online.json"></script>
+</head>
+<body>
+    <div id="list-data">
+
+        <!-- top -->
+        <div class="top">
+            <label for="column">请输入数据展示的列数：</label>
+            <input id="column" type="number" v-model.number.trim="cols" @click="changecols(cols)" @keyup="changecols(cols)">
+        </div>
+
+        <!-- table -->
+        <table v-for="(value, key, index) in items">
+            <caption @click="showpercent(value,index,value.length)"> {{key}} </caption>
+            <tr v-for="m in Math.ceil(value.length/cols)">
+                <td :class="[{ haspercent: getpercent(n,m,value)>0 }, 'ttd-'+index]"  :title="getlocation(n,m,value.length,value)"  v-if="(m-1)*cols+n-1<value.length" data-container="body" data-toggle="modal" data-target="#myModal" @mouseenter="onhover(n,m,value.length,value,index)" @mouseleave="onhoverleave(n,m,value.length,value,index)" @click="getdetail(n,m,value.length,value)" v-for="n in cols" data-toggle="popover" data-placement="right" :data-content="getmsg(n,m,value.length,value)"> {{ getnid(n,m,value.length,value) }} </td>
+            </tr>
+        </table>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">{{ summary }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            <li v-for="msg in message"><a :href="nid"> {{ msg }} </a></li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="../script/index.js"></script>
+</body>
+</html>

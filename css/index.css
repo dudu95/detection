@@ -1,0 +1,48 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: Helvetica Neue, Arial, sans-serif;
+    font-size: 17px;
+    background-color: #333;
+    text-align: center;
+}
+
+table {
+    background-color: #fff;
+    margin: 4% auto;
+    border:2px solid #dff0d8;
+}
+
+caption{
+    font-size: 24px;
+    cursor: pointer;
+}
+
+td {
+    min-width: 80px;
+    border:2px solid #dff0d8;
+    padding: 10px 25px;
+    cursor: pointer;
+    transition: background-color .5s ease-in 0s;
+}
+
+.top{
+    margin-top:4%;
+}
+
+.top label{
+    color: #e1e1e1;
+}
+
+li{
+    list-style: none;
+    text-align: left;
+    margin-left: 5%;
+}
+
+.haspercent{
+     color: #ee5f4c;
+ }
